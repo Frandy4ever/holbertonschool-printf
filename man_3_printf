@@ -10,10 +10,15 @@ _printf - format and write a string, character or integer to stdout
 #include <stdlib.h>
 .br
 .br
-int _printf(const char *format, ...)
+.SH SYNOPSIS
+
+int printf(const char *format, ...);
 
 .SH DESCRIPTION
 The function _printf() produces output according to format described below, writes output to stdout.
+
+These functions write the output under the control of a format string that specifies how subsequent  arguments  (or  arguments
+accessed via the variable-length argument facilities of stdarg(3)) are converted for output.
 
 .SS Return value
 .br
@@ -22,8 +27,41 @@ printed (excluding the null byte)
 
 if an output error is encountered, a negative value is returned
 
+Supported format modifiers:
+
 .SS The format string
 It is a character string, composed of zero or more directives, ordinary characters which are copied and unchanged to the stdout, each conversion specifier is introduced with %
+
+d,i
+The int argument is converted to signed decimal notation. writes an integer to stdout
+
+c
+The charchter gets promoted to its ASCII value and written to stdout.
+
+s
+The const char * argument is expected to be an array of character type (pointer to string). characters from the array are written up to (but no>
+
+%
+A '%' is written while no argument is converted. The complete conversion specification is %%.
+
+u
+prints an unsigned int in binary format
+
+o
+prints numbers in octal
+
+X
+prints unsigned int in Hex upper format
+
+x
+prints unsigned int in hex lower format
+
+s
+handles custom conversion S which for instance
+ *prints '\n' as \x and hex equivalent of n
+
+
+other format modifiers not supported by _printf will be printed out as they are. For example, if '%r' is passed to _printf, "%r' will be printed>
 
 .br
 .SH BUGS
